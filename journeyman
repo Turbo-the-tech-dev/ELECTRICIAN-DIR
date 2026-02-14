@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Create a root directory for the apprenticeship
+ROOT_DIR="Journeyman_Apprenticeship"
+mkdir -p "$ROOT_DIR"
+
+# Define the years and their specific focus areas for the READMEs
+declare -A YEARS
+YEARS=( 
+    ["1st_Year"]="Focus: Safety, Tools, Material Handling, DC Theory, and Conduit Bending." 
+    ["2nd_Year"]="Focus: AC Theory, Transformers, Blueprints, and Residential Wiring." 
+    ["3rd_Year"]="Focus: Motor Controls, Grounding/Bonding, and Commercial Installations." 
+    ["4th_Year"]="Focus: Process Controls (PLCs), Advanced Code Calculations, and License Exam Prep." 
+)
+
+# Loop through the years to create folders and files
+for YEAR in "1st_Year" "2nd_Year" "3rd_Year" "4th_Year"; do
+    
+    # Create the directory (Like setting a junction box)
+    DIR_PATH="$ROOT_DIR/$YEAR"
+    mkdir -p "$DIR_PATH"
+
+    # Create the README.md file (Like labeling the panel)
+    FILE_PATH="$DIR_PATH/README.md"
+    
+    # Write content to the file
+    cat <<EOT >> "$FILE_PATH"
+# $YEAR Apprenticeship Log
+
+## Objective
+${YEARS[$YEAR]}
+
+## Hours Log
+| Date | Job Site | Task Description | Hours | Supervisor |
+|------|----------|------------------|-------|------------|
+|      |          |                  |       |            |
+
+## Notes
+- [ ] Code references to memorize
+- [ ] Tools acquired this year
+EOT
+
+    echo "wited: $DIR_PATH and README.md"
+done
+
+echo "Complete. Your digital rough-in is done."
